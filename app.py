@@ -40,11 +40,7 @@ if __name__ == '__main__':
     app.run(debug=True)
 
 #datenbank Befehle
-
 #connection = sqlite3.connect('user.db')
-
 #connection.execute()
-
 #connection.commit()
-
 #connection.close()
