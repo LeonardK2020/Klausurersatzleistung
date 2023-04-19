@@ -1,0 +1,11 @@
+import sqlite3
+
+connection = sqlite3.connect('benutzer.db')
+
+
+
+connection.execute("INSERT INTO benutzer (Name, Art, Schiene, Lehrkraft) VALUES ('10inf','GK', '1', 'RH');")
+
+
+connection.commit()
+connection.close()
