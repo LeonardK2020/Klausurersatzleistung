@@ -9,20 +9,16 @@ Bootstrap = Bootstrap(app)
 @app.route("/")
 
 def startseite():
-
     return render_template("index.html")
-
 @app.route("/Aufgaben")
 
 def Aufgaben():
-
     return render_template("Aufgaben.html")
 
 
 @app.route("/Kalender")
 
 def Kalender():
-
     return render_template("Kalender.html")
 
 @app.route("/Termin")
