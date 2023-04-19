@@ -11,20 +11,53 @@
         <nav class="navbar sticky-top bg-body-tertiary">
             <div class="container-fluid">
               <a class="navbar-brand">Personal Organizer</a>
-              <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
-              </li>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                </ul>
+                
             </div>
         </nav>
 
         <div class="row">
             <div class="col">
               Aufgaben
-              <a href="/Aufgaben" class="btn btn-primary">Aufgaben hinzufügen</a>
+              <table border="1"; align="center">
+                <tr>
+                    <th>Aufgabe</th>
+                    <th>Fälligkeitsdatum</th>
+                </tr>
+                 {%for Aufgaben in ToDos%}
+                    <tr>
+                        <td>{{Aufgaben[0]}}</td>
+                        <td>{{Aufgaben[1]}}</td>
+                    </tr>
+                 {% endfor %}
+            </table>
+            <a href="/Aufgaben" class="btn btn-primary">Aufgaben hinzufügen</a>
             </div>
             <div class="col">
               Termine
-              <a href="/Termine" class="btn btn-primary">Termine hinzufügen</a>
+              <table border="1"; align="center">
+                <tr>
+                    <th>Termin</th>
+                    <th>Datum</th>
+                    <th>Wochentag</th>
+                    <th>Anfang</th>
+                    <th>Ende</th>
+                </tr>
+                 {%for Termine in Termine2%}
+                    <tr>
+                        <td>{{Termine[0]}}</td>
+                        <td>{{Termine[1]}}</td>
+                        <td>{{Termine[2]}}</td>
+                        <td>{{Termine[3]}}</td>
+                        <td>{{Termine[4]}}</td>
+                    </tr>
+                 {% endfor %}
+            </table>
+            <a href="/Termine" class="btn btn-primary">Termine hinzufügen</a>
             </div>
             <div class="col">
               Kalender
