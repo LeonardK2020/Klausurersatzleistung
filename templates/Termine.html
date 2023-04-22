@@ -8,7 +8,7 @@
     <body>
         <form action="/newDate" method="POST">
             <label for="name">Termin</label><br>
-            <input type="text" id="name" name="name"><br>
+            <input type="text" id="name" name="name" required><br>
         
             <label for="wochentag">Wochentag</label><br>
             <select id="wochentag" name="wochentag">
@@ -23,21 +23,21 @@
             
 
             <label for="datum_tag">Tag</label><br>
-            <select id="datum_tag" name="datum_tag">
+            <select id="datum_tag" name="datum_tag" required>
                 {%for tag in range(1, 32)%}
                 <option value="{{ tag }}">{{ tag }}</option>
                 {% endfor %}
             </select>
         
             <label for="datum_monat">Monat</label><br>
-            <select id="datum_monat" name="datum_monat">
+            <select id="datum_monat" name="datum_monat" required>
                 {%for monat in range(1, 13)%}
                 <option value="{{ monat }}">{{ monat }}</option>
                 {% endfor %}
             </select>
 
             <label for="datum_jahr">Jahr</label><br>
-            <input type="number" id="datum_jahr" name="datum_jahr"><br>
+            <input type="number" id="datum_jahr" name="datum_jahr" required><br>
 
             <label for="uhrzeit_anfang">Beginn</label><br>
             <input type="text" id="uhrzeit_anfang" name="uhrzeit_anfang"><br>
