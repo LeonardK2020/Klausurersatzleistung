@@ -47,13 +47,13 @@
                     <th>Anfang</th>
                     <th>Ende</th>
                 </tr>
-                 {%for Termine in Termine2%}
+                 {%for termin in termine%}
                     <tr>
-                        <td>{{Termine[0]}}</td>
-                        <td>{{Termine[1]}}</td>
-                        <td>{{Termine[2]}}</td>
-                        <td>{{Termine[3]}}</td>
-                        <td>{{Termine[4]}}</td>
+                        <td>{{termin[0]}}</td>
+                        <td>{{termin[1]}} . {{termin[2]}} . {{termin[3]}}</td>
+                        <td>{{termin[4]}}</td>
+                        <td>{{termin[5]}}</td>
+                        <td>{{termin[6]}}</td>
                     </tr>
                  {% endfor %}
             </table>
