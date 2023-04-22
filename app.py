@@ -7,7 +7,6 @@ app = Flask(__name__)
 Bootstrap = Bootstrap(app)
 
 @app.route("/")
-
 def startseite():
     connection = sqlite3.connect('aufgaben.db')
     cursor = connection.cursor()
@@ -24,10 +23,8 @@ def startseite():
 
 
 @app.route("/Aufgaben")
-
 def Aufgaben():
     return render_template("Aufgaben.html")
-
 
 @app.route("/newTask", methods=["POST"])
 def newTask():
@@ -51,9 +48,9 @@ def newTask():
 
 
 @app.route("/Kalender")
-
 def Kalender():
     return render_template("Kalender.html")
+
 
 @app.route("/Termine")
 def Termine():
@@ -80,6 +77,7 @@ def newDate():
         except sqlite3.Error as error:
             return "Es gab ein Problem beim Hinzufügen dieses Termins." + str(error)
     return render_template("Termine.html")
+
 
 @app.route("/login")
 
