@@ -16,6 +16,12 @@ def Aufgaben():
     return render_template("Aufgaben.html")
 
 
+@app.route("/newTask")
+def newTask():
+
+    return render_template("Aufgaben.html")
+
+
 @app.route("/Kalender")
 
 def Kalender():
