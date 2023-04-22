@@ -9,7 +9,15 @@ Bootstrap = Bootstrap(app)
 @app.route("/")
 
 def startseite():
-    return render_template("index.html")
+    connection = sqlite3.connect('aufgaben.db')
+    cursor = connection.cursor()
+    cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat FROM aufgaben;")
+    aufgaben = cursor.fetchall()
+    connection.close()
+    return render_template("index.html", aufgaben=aufgaben)
+
+
+
 @app.route("/Aufgaben")
 
 def Aufgaben():
