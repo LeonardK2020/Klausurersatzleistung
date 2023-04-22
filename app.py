@@ -9,7 +9,15 @@ Bootstrap = Bootstrap(app)
 @app.route("/")
 
 def startseite():
-    return render_template("index.html")
+    connection = sqlite3.connect('aufgaben.db')
+    cursor = connection.cursor()
+    cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat FROM aufgaben;")
+    aufgaben = cursor.fetchall()
+    connection.close()
+    return render_template("index.html", aufgaben=aufgaben)
+
+
+
 @app.route("/Aufgaben")
 
 def Aufgaben():
@@ -21,12 +29,12 @@ def newTask():
     if request.method == 'POST':
         connection = sqlite3.connect('aufgaben.db')
         cursor = connection.cursor()
-        aufgabe_name = request.form.get('Neue Aufgabe')
-        aufgabe_tag = request.form.get('Tag')
-        aufgabe_monat = request.form.get('Monat')
+        aufgaben_name = request.form.get('name')
+        aufgaben_tag = request.form.get('aufgaben_tag')
+        aufgaben_monat = request.form.get('aufgaben_monat')
         
         try:
-            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat) VALUES (?, ?, ?);", (aufgabe_name, aufgabe_tag, aufgabe_monat))
+            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat) VALUES (?, ?, ?);", (aufgaben_name, aufgaben_tag, aufgaben_monat))
             connection.commit()
             connection.close()
             return "Die Aufgabe wurde erfolgreich hinzugefügt."
@@ -44,8 +52,8 @@ def Kalender():
 
 @app.route("/Termin")
 
-def Termin():
-    return render_template("Termin.html")
+def Termine():
+    return render_template("Termine.html")
 
 @app.route("/login")
 
