@@ -30,8 +30,8 @@ def newTask():
             connection.commit()
             connection.close()
             return "Die Aufgabe wurde erfolgreich hinzugefügt."
-        except:
-            return "Es gab ein Problem beim Hinzufügen dieser Aufgabe."
+        except sqlite3.Error as error:
+            return "Es gab ein Problem beim Hinzufügen dieser Aufgabe." + str(error)
         
 
     return render_template("Aufgaben.html")
