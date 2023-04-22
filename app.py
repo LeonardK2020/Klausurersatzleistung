@@ -59,7 +59,7 @@ def Kalender():
 def Termine():
     return render_template("Termine.html")
 
-@app.route("/newDate")
+@app.route("/newDate", methods=["POST"])
 def newDate():
     if request.method == 'POST':
         connection = sqlite3.connect('termine.db')
