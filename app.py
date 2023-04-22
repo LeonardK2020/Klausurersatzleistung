@@ -16,8 +16,23 @@ def Aufgaben():
     return render_template("Aufgaben.html")
 
 
-@app.route("/newTask")
+@app.route("/newTask", methods=["POST"])
 def newTask():
+    if request.method == 'POST':
+        connection = sqlite3.connect('aufgaben.db')
+        cursor = connection.cursor()
+        aufgabe_name = request.form.get('Neue Aufgabe')
+        aufgabe_tag = request.form.get('Tag')
+        aufgabe_monat = request.form.get('Monat')
+        
+        try:
+            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat) VALUES (?, ?, ?);", (aufgabe_name, aufgabe_tag, aufgabe_monat))
+            connection.commit()
+            connection.close()
+            return "Die Aufgabe wurde erfolgreich hinzugefügt."
+        except:
+            return "Es gab ein Problem beim Hinzufügen dieser Aufgabe."
+        
 
     return render_template("Aufgaben.html")
 
