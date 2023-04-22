@@ -51,9 +51,29 @@ def Kalender():
     return render_template("Kalender.html")
 
 @app.route("/Termin")
-
 def Termine():
     return render_template("Termine.html")
+
+@app.route("/newDate")
+def newDate():
+    if request.method == 'POST':
+        connection = sqlite3.connect('termine.db')
+        cursor = connection.cursor()
+        termin_name = request.form.get('name')
+        datum_tag = request.form.get('datum_tag')
+        datum_monat = request.form.get('datum_monat')
+        datum_jahr = request.form.get('datum_jahr')
+        termin_wochentag = request.form.get('wochentag')
+        uhrzeit_anfang = request.form.get('uhrzeit_anfang')
+        uhrzeit_ende = request.form.get('uhrzeit_ende')
+
+        try:
+            connection.execute("INSERT INTO termine (name, datum_tag, datum_monat, datum_jahr, wochentag, uhrzeit_anfang, uhrzeit_ende ) VALUES (?, ?, ?);", (termin_name, datum_tag, datum_monat, datum_jahr, termin_wochentag, uhrzeit_anfang, uhrzeit_ende))
+            connection.commit()
+            connection.close()
+            return "Der Termin wurde erfolgreich hinzugefügt."
+        except sqlite3.Error as error:
+            return "Es gab ein Problem beim Hinzufügen dieses Termins." + str(error)
 
 @app.route("/login")
 
