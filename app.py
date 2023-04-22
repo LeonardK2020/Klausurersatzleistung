@@ -24,12 +24,12 @@ def newTask():
         #aufgabe_name = request.form.get('Neue Aufgabe')
         #aufgabe_tag = request.form.get('Tag')
         #aufgabe_monat = request.form.get('Monat')
-        aufgabe_name = request.form.get('Aufgabe')
-        aufgabe_tag = request.form.get('Tag')
-        aufgabe_monat = request.form.get('Monat')
+        aufgaben_name = request.form.get('Aufgabe')
+        aufgaben_tag = request.form.get('Tag')
+        aufgaben_monat = request.form.get('Monat')
         
         try:
-            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat) VALUES (?, ?, ?);", (aufgabe_name, aufgabe_tag, aufgabe_monat))
+            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat) VALUES (?, ?, ?);", (aufgaben_name, aufgaben_tag, aufgaben_monat))
             connection.commit()
             connection.close()
             return "Die Aufgabe wurde erfolgreich hinzugefügt."
