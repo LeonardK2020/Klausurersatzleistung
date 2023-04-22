@@ -17,9 +17,9 @@ def startseite():
     connection = sqlite3.connect('termine.db')
     cursor = connection.cursor()
     cursor.execute("SELECT name, datum_tag, datum_monat, datum_jahr, wochentag, uhrzeit_anfang, uhrzeit_ende FROM termine;")
-    aufgaben = cursor.fetchall()
+    termine = cursor.fetchall()
     connection.close()
-    return render_template("index.html", aufgaben=aufgaben)
+    return render_template("index.html", aufgaben=aufgaben, termine=termine)
 
 
 
