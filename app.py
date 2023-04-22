@@ -74,6 +74,7 @@ def newDate():
             return "Der Termin wurde erfolgreich hinzugefügt."
         except sqlite3.Error as error:
             return "Es gab ein Problem beim Hinzufügen dieses Termins." + str(error)
+    return render_template("Termine.html")
 
 @app.route("/login")
 
