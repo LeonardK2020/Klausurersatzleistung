@@ -52,8 +52,8 @@ def Kalender():
 
 @app.route("/Termin")
 
-def Termin():
-    return render_template("Termin.html")
+def Termine():
+    return render_template("Termine.html")
 
 @app.route("/login")
 
