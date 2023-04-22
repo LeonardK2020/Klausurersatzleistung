@@ -50,7 +50,7 @@ def newTask():
 def Kalender():
     return render_template("Kalender.html")
 
-@app.route("/Termin")
+@app.route("/Termine")
 def Termine():
     return render_template("Termine.html")
 
