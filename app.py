@@ -29,9 +29,6 @@ def newTask():
     if request.method == 'POST':
         connection = sqlite3.connect('aufgaben.db')
         cursor = connection.cursor()
-        #aufgabe_name = request.form.get('Neue Aufgabe')
-        #aufgabe_tag = request.form.get('Tag')
-        #aufgabe_monat = request.form.get('Monat')
         aufgaben_name = request.form.get('name')
         aufgaben_tag = request.form.get('aufgaben_tag')
         aufgaben_monat = request.form.get('aufgaben_monat')
