@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
@@ -46,6 +46,25 @@ def newTask():
         
 
     return render_template("Aufgaben.html")
+
+
+@app.route("/remove_aufgabe/<int:aufgabe_id>", methods=["GET", "POST"])
+def remove_aufgabe(aufgabe_id):
+    if request.method == "POST":
+        connection = sqlite3.connect('aufgaben.db')
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM aufgaben WHERE id=?", (aufgabe_id,))
+        connection.commit()
+        connection.close()
+        return redirect("/")
+    else:
+        connection = sqlite3.connect('aufgaben.db')
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM aufgaben WHERE id=?", (aufgabe_id,))
+        aufgabe = cursor.fetchone()
+        connection.close()
+        return render_template("remove_aufgabe.html", aufgabe=aufgabe)
+
 
 
 @app.route("/Kalender")
