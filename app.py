@@ -10,7 +10,7 @@ Bootstrap = Bootstrap(app)
 def startseite():
     connection = sqlite3.connect('aufgaben.db')
     cursor = connection.cursor()
-    cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat FROM aufgaben;")
+    cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat, priorität FROM aufgaben;")
     aufgaben = cursor.fetchall()
     connection.close()
     connection = sqlite3.connect('termine.db')
