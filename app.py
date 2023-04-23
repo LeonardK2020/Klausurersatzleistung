@@ -10,7 +10,7 @@ Bootstrap = Bootstrap(app)
 def startseite():
     connection = sqlite3.connect('aufgaben.db')
     cursor = connection.cursor()
-    cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat, priorität, aufgabe_id FROM aufgaben;")
+    cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat, priorität, aufgaben_id FROM aufgaben;")
     aufgaben = cursor.fetchall()
     connection.close()
     connection = sqlite3.connect('termine.db')
@@ -48,19 +48,19 @@ def newTask():
     return render_template("Aufgaben.html")
 
 
-@app.route("/remove_aufgabe/aufgabe_id>", methods=["GET", "POST"])
-def remove_aufgabe(aufgabe_id):
+@app.route("/remove_aufgabe/aufgaben_id>", methods=["GET", "POST"])
+def remove_aufgabe(aufgaben_id):
     if request.method == "POST":
         connection = sqlite3.connect('aufgaben.db')
         cursor = connection.cursor()
-        cursor.execute("DELETE FROM aufgaben WHERE aufgabe_id=?", (aufgabe_id,))
+        cursor.execute("DELETE FROM aufgaben WHERE aufgaben_id=?", (aufgaben_id,))
         connection.commit()
         connection.close()
         return redirect("/")
     else:
         connection = sqlite3.connect('aufgaben.db')
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM aufgaben WHERE aufgabe_id=?", (aufgabe_id,))
+        cursor.execute("SELECT * FROM aufgaben WHERE aufgaben_id=?", (aufgaben_id,))
         aufgabe = cursor.fetchone()
         connection.close()
         return render_template("remove_aufgabe.html", aufgabe=aufgabe)
