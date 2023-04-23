@@ -83,13 +83,13 @@
 <script>
     function uhrzeit() {
         var act = new Date();
-        var x= act.getHours();
-        if  (x <10) { x="0"+x; }
-        var y= act.getMinutes();
-        if  (y <10) { y="0"+y; }
-        var z= act.getSeconds();
-        if  (z <10) { z="0"+z; }
-        document.uhr.uhrbutton.value = x+":"+y+":"+z;
+        var h= act.getHours();
+        if  (h <10) { h="0"+h; }
+        var m= act.getMinutes();
+        if  (m <10) { m="0"+m; }
+        var s= act.getSeconds();
+        if  (s <10) { s="0"+s; }
+        document.uhr.uhrbutton.value = h+":"+m+":"+s;
     }
 
     setInterval(uhrzeit, 1000);
