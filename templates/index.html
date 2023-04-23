@@ -7,7 +7,7 @@
     </head>
 
 
-    <body>
+    <body onLoad="uhrzeit();">
         <nav class="navbar sticky-top bg-body-tertiary">
             <div class="container-fluid">
               <a class="navbar-brand">Personal Organizer</a>
@@ -19,6 +19,11 @@
                 
             </div>
         </nav>
+
+        <form name="uhr">
+            Es ist <input type="button" name="uhrbutton" value="00:00:00"/>
+        </form>
+
 
         <div class="row">
             <div class="col text-center">
@@ -72,3 +77,18 @@
 
 
 </html>
+
+
+
+<script>
+    function uhrzeit() {
+  var act = new Date();
+  var x= act.getHours();
+  if  (x <10) { x="0"+x; }
+  var y= act.getMinutes();
+  if  (y <10) { y="0"+y; }
+  var z= act.getSeconds();
+  if  (z <10) { z="0"+z; }
+  document.uhr.uhrbutton.value = x+":"+y+":"+z;
+}
+</script>
