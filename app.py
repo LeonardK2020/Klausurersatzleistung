@@ -48,7 +48,7 @@ def newTask():
     return render_template("Aufgaben.html")
 
 
-@app.route("/remove_aufgabe/aufgaben_id>", methods=["GET", "POST"])
+@app.route("/remove_aufgabe/<aufgaben_id>", methods=["GET", "POST"])
 def remove_aufgabe(aufgaben_id):
     if request.method == "POST":
         connection = sqlite3.connect('aufgaben.db')
