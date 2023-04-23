@@ -82,15 +82,18 @@
 
 <script>
     function uhrzeit() {
-  var act = new Date();
-  var x= act.getHours();
-  if  (x <10) { x="0"+x; }
-  var y= act.getMinutes();
-  if  (y <10) { y="0"+y; }
-  var z= act.getSeconds();
-  if  (z <10) { z="0"+z; }
-  document.uhr.uhrbutton.value = x+":"+y+":"+z;
-}
+        var act = new Date();
+        var x= act.getHours();
+        if  (x <10) { x="0"+x; }
+        var y= act.getMinutes();
+        if  (y <10) { y="0"+y; }
+        var z= act.getSeconds();
+        if  (z <10) { z="0"+z; }
+        document.uhr.uhrbutton.value = x+":"+y+":"+z;
+    }
+
+    setInterval(uhrzeit, 1000);
+
 </script>
 
 <!--Hier wird x/y/z <10 gesetzt, damit z.B. 10:09:17 und nicht 10:9:17 angezeigt wird-->
