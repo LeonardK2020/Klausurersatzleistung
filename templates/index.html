@@ -32,11 +32,13 @@
                 <tr>
                     <th>Aufgabe</th>
                     <th>Fälligkeitsdatum</th>
+                    <th>Priorität</th>
                 </tr>
                  {%for aufgabe in aufgaben%}
                     <tr>
                         <td>{{aufgabe[0]}}</td>
                         <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
+                        <td>{{aufgabe[3]}}</td>
                     </tr>
                  {% endfor %}
             </table>

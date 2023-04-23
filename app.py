@@ -34,9 +34,10 @@ def newTask():
         aufgaben_name = request.form.get('name')
         aufgaben_tag = request.form.get('aufgaben_tag')
         aufgaben_monat = request.form.get('aufgaben_monat')
+        aufgaben_priorität = request.form.get('priorität')
         
         try:
-            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat) VALUES (?, ?, ?);", (aufgaben_name, aufgaben_tag, aufgaben_monat))
+            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat) VALUES (?, ?, ?, ?);", (aufgaben_name, aufgaben_tag, aufgaben_monat, aufgaben_priorität))
             connection.commit()
             connection.close()
             return "Die Aufgabe wurde erfolgreich hinzugefügt."
