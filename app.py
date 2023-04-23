@@ -10,7 +10,7 @@ Bootstrap = Bootstrap(app)
 def startseite():
     connection = sqlite3.connect('aufgaben.db')
     cursor = connection.cursor()
-    cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat FROM aufgaben;")
+    cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat, priorität FROM aufgaben;")
     aufgaben = cursor.fetchall()
     connection.close()
     connection = sqlite3.connect('termine.db')
@@ -37,7 +37,7 @@ def newTask():
         aufgaben_priorität = request.form.get('priorität')
         
         try:
-            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat) VALUES (?, ?, ?, ?);", (aufgaben_name, aufgaben_tag, aufgaben_monat, aufgaben_priorität))
+            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat, priorität) VALUES (?, ?, ?, ?);", (aufgaben_name, aufgaben_tag, aufgaben_monat, aufgaben_priorität))
             connection.commit()
             connection.close()
             return "Die Aufgabe wurde erfolgreich hinzugefügt."
