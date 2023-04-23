@@ -53,7 +53,7 @@ def remove_aufgabe(aufgaben_id):
     if request.method == "POST":
         connection = sqlite3.connect('aufgaben.db')
         cursor = connection.cursor()
-        cursor.execute("DELETE FROM aufgaben WHERE aufgaben_id=?", (aufgaben_id,))
+        cursor.execute("DELETE FROM aufgaben WHERE aufgaben_id=?", (request.form['aufgaben_id'],))
         connection.commit()
         connection.close()
         return redirect("/")
