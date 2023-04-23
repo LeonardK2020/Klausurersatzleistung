@@ -6,6 +6,17 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     </Head>
     <body>
+        <nav class="navbar sticky-top bg-body-tertiary navbar-expand-lg">
+            <div class="container-fluid">
+              <a class="navbar-brand">Personal Organizer</a>
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">Home</a>
+                    </li>
+                </ul>
+                
+            </div>
+        </nav>
         <form action="/newTask" method="POST">
             <label for="name">Aufgabe</label><br>
             <input type="text" id="name" name="name" required><br>

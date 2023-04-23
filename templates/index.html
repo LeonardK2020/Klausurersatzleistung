@@ -8,9 +8,11 @@
 
 
     <body onLoad="uhrzeit();">
-        <nav class="navbar sticky-top bg-body-tertiary navbar-expand-lg">
+        <nav class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
             <div class="container-fluid">
-              <a class="navbar-brand">Personal Organizer</a>
+              <a class="navbar-brand">
+                <img src="{{ url_for('static', filename= 'files/logoq2.PNG') }}" alt="Bootstrap" width="150" height="120">
+                Personal Organizer</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
@@ -35,7 +37,13 @@
                     <th>Priorität</th>
                 </tr>
                  {%for aufgabe in aufgaben%}
-                    <tr>
+                    {% if aufgabe[3] == "Hoch" %}
+                        <tr style="background-color: red;">
+                    {% elif aufgabe[3] == "Mittel" %}
+                        <tr style="background-color: yellow;">
+                    {% elif aufgabe[3] == "Niedrig" %}
+                        <tr style="background-color: green ;">
+                    {% endif %}
                         <td>{{aufgabe[0]}}</td>
                         <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
                         <td>{{aufgabe[3]}}</td>
