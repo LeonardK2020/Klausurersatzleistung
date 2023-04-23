@@ -4,8 +4,8 @@
   </head>
   <body>
     <h1>Aufgabe entfernen</h1>
-    <form method="POST" action="{{ url_for('remove_aufgabe', aufgaben_id=aufgabe[4]) }}">
-        <input type="hidden" name="aufgaben_id" value="{{ aufgabe[4] }}">
+    <form method="POST" action="{{ url_for('remove_aufgabe', aufgaben_id=aufgabe[0]) }}">
+        <input type="hidden" name="aufgaben_id" value="{{ aufgabe[0] }}">
         <p>Sicher, dass du die Aufgabe "{{ aufgabe[2] }}" löschen möchtest?</p>
         <input type="submit" value="Ja">
         <a href="/">Nein</a>
