@@ -23,6 +23,13 @@
                 <option value="{{ monat }}">{{ monat }}</option>
                 {% endfor %}
             </select>
+
+            <label for="priorität">Priorität</label><br>
+            <select id="priorität" name="priorität">
+                <option value="niedrig">Niedrig</option>
+                <option value="mittel">Mittel</option>
+                <option value="hoch">Hoch</option>
+            </select>
                     
             <button type="submit" class="submitbtn">Neue Aufgabe hinzufügen</button>
         </form>
