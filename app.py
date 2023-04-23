@@ -48,19 +48,19 @@ def newTask():
     return render_template("Aufgaben.html")
 
 
-@app.route("/remove_aufgabe/aufgabe_name>", methods=["GET", "POST"])
-def remove_aufgabe(aufgabe_name):
+@app.route("/remove_aufgabe/aufgabe_id>", methods=["GET", "POST"])
+def remove_aufgabe(aufgabe_id):
     if request.method == "POST":
         connection = sqlite3.connect('aufgaben.db')
         cursor = connection.cursor()
-        cursor.execute("DELETE FROM aufgaben WHERE aufgabe_name=?", (aufgabe_name,))
+        cursor.execute("DELETE FROM aufgaben WHERE aufgabe_id=?", (aufgabe_id,))
         connection.commit()
         connection.close()
         return redirect("/")
     else:
         connection = sqlite3.connect('aufgaben.db')
         cursor = connection.cursor()
-        cursor.execute("SELECT * FROM aufgaben WHERE aufgabe_name=?", (aufgabe_name,))
+        cursor.execute("SELECT * FROM aufgaben WHERE aufgabe_id=?", (aufgabe_id,))
         aufgabe = cursor.fetchone()
         connection.close()
         return render_template("remove_aufgabe.html", aufgabe=aufgabe)
