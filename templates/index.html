@@ -35,6 +35,13 @@
                     <th>Priorität</th>
                 </tr>
                  {%for aufgabe in aufgaben%}
+                    {% if aufgabe[3] == "Hoch" %}
+                        <tr style="background-color: red;">
+                    {% elif aufgabe[3] == "Mittel" %}
+                        <tr style="background-color: yellow;">
+                    {% elif aufgabe[3] == "Niedrig" %}
+                        <tr style="background-color: green ;">
+                    {% endif %}
                     <tr>
                         <td>{{aufgabe[0]}}</td>
                         <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
