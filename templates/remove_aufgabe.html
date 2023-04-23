@@ -7,7 +7,7 @@
     <p>Bist du sicher, dass du folgende Aufgabe entfernen möchtest?</p>
     <p>{{ aufgabe[2] }}</p>
     <form method="POST" action="{{ url_for('remove_aufgabe', aufgaben_id=aufgabe[4]) }}">
-        <input type="hidden" name="aufgabe_id" value="{{ aufgabe[4] }}">
+        <input type="hidden" name="aufgaben_id" value="{{ aufgabe[4] }}">
       <button type="submit">Ja</button>
       <a href="/">Nein</a>
     </form>
