@@ -87,7 +87,7 @@ def edit_aufgabe(aufgaben_id):
         
         connection.commit()
         connection.close()
-        return redirect('/')
+        return render_template('edit_aufgabe.html', aufgabe=aufgabe)
     else:
         connection.close()
         return render_template('edit_aufgabe.html', aufgabe=aufgabe)
