@@ -75,17 +75,11 @@ def edit_aufgabe(aufgaben_id):
     aufgabe = cursor.fetchone()
 
     if request.method == 'POST':
-        print(request.form.get('name'))
-        print(request.form)
-
-        cursor.execute("UPDATE aufgaben SET name=?, aufgaben_tag=?, aufgaben_monat=?, priorität=? WHERE aufgaben_id=?", 
-               (request.form.get('name'), request.form.get('aufgaben_tag'), 
-                request.form.get('aufgaben_monat'), request.form.get('priorität'), aufgaben_id))
-
-
-
-        #cursor.execute("UPDATE aufgaben SET name=?, aufgaben_tag=?, aufgaben_monat=?, priorität=? WHERE aufgaben_id=?", 
-        #               (request.form['name'], request.form['aufgaben_tag'], request.form['aufgaben_monat'], request.form['priorität'], aufgaben_id)) #werte in klammern sind nicht definiert problem
+        request.form.get('name')
+        cursor.execute("UPDATE aufgaben SET name=?, datum_abgabe_tag=?, datum_abgabe_monat=?, priorität=? WHERE aufgaben_id=?", 
+               (request.form.get('name'), request.form.get('aufgaben_tag'), request.form.get('aufgaben_monat'), request.form.get('priorität'), aufgaben_id))
+        #werte in klammern sind nicht definiert problem
+        
         connection.commit()
         connection.close()
         return redirect('/')
