@@ -99,6 +99,24 @@ def newDate():
     return render_template("Termine.html")
 
 
+@app.route("/remove_termin/<termin_id>", methods=["GET", "POST"])
+def remove_termin(termin_id):
+    if request.method == "POST":
+        connection = sqlite3.connect('termine.db')
+        cursor = connection.cursor()
+        cursor.execute("DELETE FROM termine WHERE termin_id=?", (request.form['termin_id'],))
+        connection.commit()
+        connection.close()
+        return redirect("/")
+    else:
+        connection = sqlite3.connect('termine.db')
+        cursor = connection.cursor()
+        cursor.execute("SELECT * FROM termine WHERE termin_id=?", (termin_id,))
+        termine = cursor.fetchone()
+        connection.close()
+        return render_template("remove_termin.html", termine=termine)
+
+
 @app.route("/login")
 
 def login():
