@@ -1,5 +1,5 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, flash
 from flask_bootstrap import Bootstrap
 
 app = Flask(__name__)
@@ -75,9 +75,14 @@ def edit_aufgabe(aufgaben_id):
     aufgabe = cursor.fetchone()
 
     if request.method == 'POST':
-        request.form.get('name')
-        cursor.execute("UPDATE aufgaben SET name=?, datum_abgabe_tag=?, datum_abgabe_monat=?, priorität=? WHERE aufgaben_id=?", 
-               (request.form.get('name'), request.form.get('aufgaben_tag'), request.form.get('aufgaben_monat'), request.form.get('priorität'), aufgaben_id))
+        name = request.form.get('name')
+        aufgaben_tag = request.form.get('aufgaben_tag')
+        aufgaben_monat = request.form.get('aufgaben_monat')
+        priorität = request.form.get('priorität')
+        cursor.execute("UPDATE aufgaben SET name=?, datum_abgabe_tag=?, datum_abgabe_monat=?, priorität=? WHERE aufgaben_id=?;", 
+               (name , aufgaben_tag, aufgaben_monat, priorität, aufgaben_id))
+
+
         #werte in klammern sind nicht definiert problem
         
         connection.commit()
