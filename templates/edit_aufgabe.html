@@ -4,7 +4,7 @@
   </head>
   <body>
     <h1>Aufgabe bearbeiten</h1>
-    <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[0]) }}">
+    <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[0]) }}" required>
         <label for="name">Aufgabe</label>
         <input type="text" id="name" name="name" value="{{ aufgabe[0] }}"><br>
         <label for="aufgaben_tag">Tag</label><br>
