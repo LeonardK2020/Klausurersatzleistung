@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Termin bearbeiten</title>
+  </head>
+  <body>
+    <h1>Termin bearbeiten</h1>
+    <form method="POST" action="{{ url_for('edit_termin', termin_id=termin[0], name=termin[1]) }}" >
+        <label for="name">termin</label>
+        <input type="text" id="name" name="name" value="{{ termin[0] }}" required><br>
+        <label for="datum_tag">Tag</label><br>
+            <select id="datum_tag" name="datum_tag" required>
+                {%for tag in range(1, 32)%}
+                <option value="{{ tag }}">{{ tag }}</option>
+                {% endfor %}
+            </select>
+
+        <select id="datum_monat" name="datum_monat" required>
+            {%for monat in range(1, 13)%}
+            <option value="{{ monat }}">{{ monat }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="datum_jahr">Jahr</label><br>
+        <input type="number" id="datum_jahr" name="datum_jahr" required><br>
+
+        <label for="wochentag">Wochentag</label><br>
+        <select id="wochentag" name="wochentag">
+            <option value="Montag">Montag</option>
+            <option value="Dienstag">Dienstag</option>
+            <option value="Mittwoch">Mittwoch</option>
+            <option value="Donnerstag">Donnerstag</option>
+            <option value="Freitag">Freitag</option>
+            <option value="Samstag">Samstag</option>
+            <option value="Sonntag">Sonntag</option>
+        </select>
+
+        <label for="uhrzeit_anfang">Beginn</label><br>
+        <input type="text" id="uhrzeit_anfang" name="uhrzeit_anfang"><br>
+
+        <label for="uhrzeit_ende">Ende</label><br>
+        <input type="text" id="uhrzeit_ende" name="uhrzeit_ende"><br>
+
+        <input type="submit" value="Speichern" href="/">
+    </form>
+  </body>
+</html>

@@ -80,11 +80,7 @@ def edit_aufgabe(aufgaben_id):
         aufgaben_monat = request.form.get('aufgaben_monat')
         priorität = request.form.get('priorität')
         cursor.execute("UPDATE aufgaben SET name=?, datum_abgabe_tag=?, datum_abgabe_monat=?, priorität=? WHERE aufgaben_id=?;", 
-               (name , aufgaben_tag, aufgaben_monat, priorität, aufgaben_id))
-
-
-        #werte in klammern sind nicht definiert problem
-        
+               (name , aufgaben_tag, aufgaben_monat, priorität, aufgaben_id))        
         connection.commit()
         connection.close()
         return render_template('edit_aufgabe.html', aufgabe=aufgabe)
@@ -143,6 +139,32 @@ def remove_termin(termin_id):
         termin = cursor.fetchone()
         connection.close()
         return render_template("remove_termin.html", termin=termin)
+
+
+
+@app.route('/edit_termin/<termin_id>', methods=['GET', 'POST'])
+def edit_termin(termin_id):
+    connection = sqlite3.connect('termine.db')
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM termine WHERE termin_id=?", (termin_id,))
+    termin = cursor.fetchone()
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        datum_tag = request.form.get('datum_tag')
+        datum_monat = request.form.get('datum_monat')
+        datum_jahr = request.form.get('datum_jahr')
+        wochentag = request.form.get('wochentag')
+        uhrzeit_anfang = request.form.get('uhrzeit_anfang')
+        uhrzeit_ende = request.form.get('uhrzeit_ende')
+        cursor.execute("UPDATE termine SET name=?, datum_tag=?, datum_monat=?, datum_jahr=?, wochentag=?, uhrzeit_anfang=?, uhrzeit_ende=? WHERE termin_id=?;", 
+               (name , datum_tag, datum_monat, datum_jahr, wochentag, uhrzeit_anfang, uhrzeit_ende, termin_id))        
+        connection.commit()
+        connection.close()
+        return render_template('edit_termin.html', termin=termin)
+    else:
+        connection.close()
+        return render_template('edit_termin.html', termin=termin)
 
 
 @app.route("/login")
