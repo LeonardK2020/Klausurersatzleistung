@@ -64,6 +64,25 @@ def remove_aufgabe(aufgaben_id):
         aufgabe = cursor.fetchone()
         connection.close()
         return render_template("remove_aufgabe.html", aufgabe=aufgabe)
+    
+
+
+@app.route('/edit_aufgabe/<aufgaben_id>', methods=['GET', 'POST'])
+def edit_aufgabe(aufgaben_id):
+    connection = sqlite3.connect('aufgaben.db')
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM aufgaben WHERE aufgaben_id=?", (aufgaben_id,))
+    aufgabe = cursor.fetchone()
+
+    if request.method == 'POST':
+        cursor.execute("UPDATE aufgaben SET name=?, beschreibung=?, fälligkeit=? WHERE aufgaben_id=?", (request.form['name'], request.form['aufgaben_tag'], request.form['aufgaben_monat'], request.form['priorität'], aufgaben_id))
+        connection.commit()
+        connection.close()
+        return redirect('/')
+    else:
+        connection.close()
+        return render_template('edit_aufgabe.html', aufgabe=aufgabe)
+
 
 
 
