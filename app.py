@@ -112,9 +112,9 @@ def remove_termin(termin_id):
         connection = sqlite3.connect('termine.db')
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM termine WHERE termin_id=?", (termin_id,))
-        termine = cursor.fetchone()
+        termin = cursor.fetchone()
         connection.close()
-        return render_template("remove_termin.html", termine=termine)
+        return render_template("remove_termin.html", termin=termin)
 
 
 @app.route("/login")
