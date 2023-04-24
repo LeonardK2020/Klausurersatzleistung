@@ -49,7 +49,7 @@
                         <td>{{aufgabe[3]}}</td>
                         
                         <td>
-                            <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4]) }}">
+                            <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
                               <input type="submit" value="Bearbeiten">
                             </form>
                         </td>
