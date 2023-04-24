@@ -8,12 +8,12 @@ Bootstrap = Bootstrap(app)
 
 @app.route("/")
 def startseite():
-    connection = sqlite3.connect('aufgaben.db')
+    connection = sqlite3.connect('datenbank.db')
     cursor = connection.cursor()
     cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat, priorität, aufgaben_id FROM aufgaben;")
     aufgaben = cursor.fetchall()
     connection.close()
-    connection = sqlite3.connect('termine.db')
+    connection = sqlite3.connect('datenbank.db')
     cursor = connection.cursor()
     cursor.execute("SELECT name, datum_tag, datum_monat, datum_jahr, wochentag, uhrzeit_anfang, uhrzeit_ende, termin_id FROM termine;")
     termine = cursor.fetchall()
@@ -29,7 +29,7 @@ def Aufgaben():
 @app.route("/newTask", methods=["POST"])
 def newTask():
     if request.method == 'POST':
-        connection = sqlite3.connect('aufgaben.db')
+        connection = sqlite3.connect('datenbank.db')
         cursor = connection.cursor()
         aufgaben_name = request.form.get('name')
         aufgaben_tag = request.form.get('aufgaben_tag')
@@ -51,14 +51,14 @@ def newTask():
 @app.route("/remove_aufgabe/<aufgaben_id>", methods=["GET", "POST"])
 def remove_aufgabe(aufgaben_id):
     if request.method == "POST":
-        connection = sqlite3.connect('aufgaben.db')
+        connection = sqlite3.connect('datenbank.db')
         cursor = connection.cursor()
         cursor.execute("DELETE FROM aufgaben WHERE aufgaben_id=?", (request.form['aufgaben_id'],))
         connection.commit()
         connection.close()
         return redirect("/")
     else:
-        connection = sqlite3.connect('aufgaben.db')
+        connection = sqlite3.connect('datenbank.db')
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM aufgaben WHERE aufgaben_id=?", (aufgaben_id,))
         aufgabe = cursor.fetchone()
@@ -69,7 +69,7 @@ def remove_aufgabe(aufgaben_id):
 
 @app.route('/edit_aufgabe/<aufgaben_id>', methods=['GET', 'POST'])
 def edit_aufgabe(aufgaben_id):
-    connection = sqlite3.connect('aufgaben.db')
+    connection = sqlite3.connect('datenbank.db')
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM aufgaben WHERE aufgaben_id=?", (aufgaben_id,))
     aufgabe = cursor.fetchone()
@@ -103,7 +103,7 @@ def Termine():
 @app.route("/newDate", methods=["POST"])
 def newDate():
     if request.method == 'POST':
-        connection = sqlite3.connect('termine.db')
+        connection = sqlite3.connect('datenbank.db')
         cursor = connection.cursor()
         termin_name = request.form.get('name')
         datum_tag = request.form.get('datum_tag')
@@ -126,14 +126,14 @@ def newDate():
 @app.route("/remove_termin/<termin_id>", methods=["GET", "POST"])
 def remove_termin(termin_id):
     if request.method == "POST":
-        connection = sqlite3.connect('termine.db')
+        connection = sqlite3.connect('datenbank.db')
         cursor = connection.cursor()
         cursor.execute("DELETE FROM termine WHERE termin_id=?", (request.form['termin_id'],))
         connection.commit()
         connection.close()
         return redirect("/")
     else:
-        connection = sqlite3.connect('termine.db')
+        connection = sqlite3.connect('datenbank.db')
         cursor = connection.cursor()
         cursor.execute("SELECT * FROM termine WHERE termin_id=?", (termin_id,))
         termin = cursor.fetchone()
@@ -144,7 +144,7 @@ def remove_termin(termin_id):
 
 @app.route('/edit_termin/<termin_id>', methods=['GET', 'POST'])
 def edit_termin(termin_id):
-    connection = sqlite3.connect('termine.db')
+    connection = sqlite3.connect('datenbank.db')
     cursor = connection.cursor()
     cursor.execute("SELECT * FROM termine WHERE termin_id=?", (termin_id,))
     termin = cursor.fetchone()
