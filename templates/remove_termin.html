@@ -5,7 +5,7 @@
   <body>
     <h1>Termin entfernen</h1>
     <form method="POST" action="{{ url_for('remove_termin', termin_id=termin[0]) }}">
-        <input type="hidden" name="termin_id" value="{{ termin[5] }}">
+        <input type="hidden" name="termin_id" value="{{ termin[0] }}">
         <p>Sicher, dass du den Termin "{{ termin[5] }}" löschen möchtest?</p>
         <input type="submit" value="Ja">
         <a href="/">Nein</a>
