@@ -18,14 +18,14 @@
                         <a class="nav-link" href="/">Home</a>
                     </li>
                 </ul>
-                <form name="uhr" class="text-center">
-                    <h4>Uhrzeit:<input type="button" class="btn btn-outline-dark" name="uhrbutton" value="00:00:00"/></h4>
+                <form style="margin-top: 15px"name="uhr" class="text-center">
+                    <h4><input type="button" class="btn btn-outline-dark bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 10px"class="bi bi-clock"></i></h4>
                 </form>
             </div>
         </nav>
 
        
-            <div class="col text-center container-fluid border rounded">
+            <div style="margin-top: 15px" id="aufgaben" class="col text-center container-fluid border rounded">
               <h2>Aufgaben</h2>
               <table class="table table-bordered mx-auto">
                 <tr>
@@ -61,7 +61,7 @@
             </table>
             <a href="/Aufgaben" class="btn btn-primary">Aufgaben hinzufügen</a>
             </div>
-            <div style="margin-top: 30px" class="col text-center container-fluid border rounded">
+            <div id="termine" style="margin-top: 30px" class="col text-center container-fluid border rounded">
               <h2>Termine</h2>
               <table class="table table-bordered mx-auto">
                 <tr>
@@ -93,7 +93,7 @@
             </table>
             <a href="/Termine" class="btn btn-primary mt-3 mx-auto d-block">Termine hinzufügen</a>
             </div>
-            <div style="margin-top: 30px" class="col text-center container-fluid border rounded">
+            <div id="kalender" style="margin-top: 30px" class="col text-center container-fluid border rounded">
               <h2>Kalender</h2>
             </div>
 
