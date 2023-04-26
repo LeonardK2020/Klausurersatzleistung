@@ -98,6 +98,31 @@
             </div>
             <div id="kalender" style="margin-top: 30px" class="col text-center container-fluid border rounded">
               <h2>Kalender</h2>
+
+
+              <div id="month-nav">
+                <button id="prev-month">&lt;</button>
+                <h2 id="current-month"></h2>
+                <button id="next-month">&gt;</button>
+              </div>
+              
+              <table>
+                <thead>
+                  <tr>
+                    <th>Mo</th>
+                    <th>Di</th>
+                    <th>Mi</th>
+                    <th>Do</th>
+                    <th>Fr</th>
+                    <th>Sa</th>
+                    <th>So</th>
+                  </tr>
+                </thead>
+                <tbody id="calendar-body">
+                </tbody>
+              </table>
+
+
             </div>
 
 
@@ -112,6 +137,7 @@ uhrzeit
 
 
 <script>
+//Uhrzeit
     function uhrzeit() {
         var act = new Date();
         var h= act.getHours();
@@ -125,12 +151,53 @@ uhrzeit
 
     setInterval(uhrzeit, 1000);
 
-
+//Datum
     date = new Date();
     year = date.getFullYear();
     month = date.getMonth() + 1;
     day = date.getDate();
     document.getElementById("current_date").innerHTML = day + "." + month + "." + year;
+
+
+//Kalender
+function showCalendar() {
+    // Hole den Kalender-Body und setze ihn auf einen leeren String
+    let calendarBody = document.getElementById('calendar-body');
+    calendarBody.innerHTML = '';
+
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth();
+    let daysInMonth = new Date(year, month + 1, 0).getDate();
+    let firstDay = new Date(year, month, 1).getDay();
+
+    let currentMonth = document.getElementById('current-month');
+    currentMonth.innerHTML = `${new Intl.DateTimeFormat('default', { month: 'long' }).format(date)} ${year}`;
+    
+    let dateNumber = 1;
+    for (let i = 0; i < 6; i++) {
+        let row = document.createElement('tr');
+        for (let j = 0; j < 7; j++) {
+            let cell = document.createElement('td');
+            if (i === 0 && j < firstDay) {
+                // Leerzellen für Tage vor Monatsbeginn
+            } else if (dateNumber > daysInMonth) {
+                // Leerzellen für Tage nach Monatsbeginn
+            } else {
+
+                cell.innerHTML = dateNumber;
+                //CSS-Klassse 'today' bei heutigem Tag
+                if (date.getFullYear() === new Date().getFullYear()) {
+                    // Add your code here for highlighting today's date
+                }
+                dateNumber++;
+            }
+            row.appendChild(cell);
+        }
+        calendarBody.appendChild(row);
+    }
+}
+
 </script>
 
-<!--Hier wird h/m/s <10 gesetzt, damit z.B. 10:09:17 und nicht 10:9:17 angezeigt wird-->
+//<!--Hier wird h/m/s <10 gesetzt, damit z.B. 10:09:17 und nicht 10:9:17 angezeigt wird-->

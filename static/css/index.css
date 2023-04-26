@@ -1,4 +1,4 @@
-#aufgaben {
+/*#aufgaben {
     
 }
 
@@ -11,9 +11,44 @@
 
     
 }
-
+*/
 
 ::placeholder {
     color: rgba(253, 252, 252, 0.171)
 
+}
+
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+  text-align: center;
+}
+
+th {
+  background-color: lightgrey;
+}
+
+.today {
+  background-color: yellow;
+}
+
+#month-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+#prev-month, #next-month {
+  margin: 0 10px;
+  padding: 10px;
+  background-color: lightgrey;
+  border: none;
+  cursor: pointer;
 }
