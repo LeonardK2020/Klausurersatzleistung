@@ -8,7 +8,7 @@
     </head>
 
 
-    <body class="container shadow" style="background-color: rgba(255, 255, 255, 0.671)" onLoad="uhrzeit();">
+    <body class="container shadow" style="background-color: rgba(255, 255, 255, 0.671)" onLoad="uhrzeit(); initializeCalendar();">
         <nav id="nav" class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
             <div class="container-fluid">
               <a class="navbar-brand">
@@ -96,7 +96,7 @@
             </table>
             <a href="/Termine" class="btn btn-primary mt-3 mx-auto d-block">Termine hinzufügen</a>
             </div>
-            <div id="kalender" style="margin-top: 30px" class="col text-center container-fluid border rounded">
+            <div id="calendar" style="margin-top: 30px" class="col text-center container-fluid border rounded">
               <h2>Kalender</h2>
 
 
@@ -106,7 +106,7 @@
                 <button id="next-month">&gt;</button>
               </div>
               
-              <table>
+              <table style="margin: 0 auto">
                 <thead>
                   <tr>
                     <th>Mo</th>
@@ -133,7 +133,7 @@
 
 
 </html>
-uhrzeit
+
 
 
 <script>
@@ -160,44 +160,53 @@ uhrzeit
 
 
 //Kalender
-function showCalendar() {
-    // Hole den Kalender-Body und setze ihn auf einen leeren String
-    let calendarBody = document.getElementById('calendar-body');
-    calendarBody.innerHTML = '';
-
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = date.getMonth();
-    let daysInMonth = new Date(year, month + 1, 0).getDate();
-    let firstDay = new Date(year, month, 1).getDay();
-
-    let currentMonth = document.getElementById('current-month');
-    currentMonth.innerHTML = `${new Intl.DateTimeFormat('default', { month: 'long' }).format(date)} ${year}`;
-    
-    let dateNumber = 1;
-    for (let i = 0; i < 6; i++) {
-        let row = document.createElement('tr');
-        for (let j = 0; j < 7; j++) {
-            let cell = document.createElement('td');
-            if (i === 0 && j < firstDay) {
-                // Leerzellen für Tage vor Monatsbeginn
-            } else if (dateNumber > daysInMonth) {
-                // Leerzellen für Tage nach Monatsbeginn
-            } else {
-
-                cell.innerHTML = dateNumber;
-                //CSS-Klassse 'today' bei heutigem Tag
-                if (date.getFullYear() === new Date().getFullYear()) {
-                    // Add your code here for highlighting today's date
-                }
-                dateNumber++;
-            }
-            row.appendChild(cell);
+function showCalendar(year, month) {
+  if (!year || !month) {
+    let today = new Date();
+    year = today.getFullYear();
+    month = today.getMonth();
+  }
+  let calendarBody = document.getElementById('calendar-body');
+  calendarBody.innerHTML = '';
+  let date = new Date(year, month, 1);
+  let daysInMonth = new Date(year, month + 1, 0).getDate();
+  let firstDay = date.getDay();
+  let currentMonth = document.getElementById('current-month');
+  currentMonth.innerHTML = `${new Intl.DateTimeFormat('default', { month: 'long' }).format(date)} ${year}`;
+  let dateNumber = 1;
+  for (let i = 0; i < 6; i++) {
+    let row = document.createElement('tr');
+    for (let j = 0; j < 7; j++) {
+      let cell = document.createElement('td');
+      if (i === 0 && j < firstDay) {
+        //tage vor 1. des monats
+      } else if (dateNumber > daysInMonth) {
+        //tage nach letzten des monats
+      } else {
+        cell.innerHTML = dateNumber;
+        // "today" bei heutigem tag
+        if (year === new Date().getFullYear() && month === new Date().getMonth() && dateNumber === new Date().getDate()) {
+          cell.classList.add('today');
         }
-        calendarBody.appendChild(row);
+        dateNumber++;
+      }
+      row.appendChild(cell);
     }
+    calendarBody.appendChild(row);
+  }
+
+  let prevMonthButton = document.getElementById('prev-month');
+  let nextMonthButton = document.getElementById('next-month');
+  prevMonthButton.addEventListener('click', function() {
+    showCalendar(year, month - 1);
+  });
+  nextMonthButton.addEventListener('click', function() {
+    showCalendar(year, month + 1);
+  });
 }
+
+showCalendar();
 
 </script>
 
-//<!--Hier wird h/m/s <10 gesetzt, damit z.B. 10:09:17 und nicht 10:9:17 angezeigt wird-->
+<!--Hier wird h/m/s <10 gesetzt, damit z.B. 10:09:17 und nicht 10:9:17 angezeigt wird-->

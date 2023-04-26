@@ -19,36 +19,23 @@
 }
 
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-th, td {
-  border: 1px solid black;
-  padding: 10px;
-  text-align: center;
-}
-
-th {
-  background-color: lightgrey;
-}
-
-.today {
-  background-color: yellow;
-}
-
 #month-nav {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 20px;
-}
-
-#prev-month, #next-month {
-  margin: 0 10px;
-  padding: 10px;
-  background-color: lightgrey;
-  border: none;
-  cursor: pointer;
-}
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #calendar-body td {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  #calendar-body td.today {
+    background-color: lightblue;
+  }
+  
+  #calendar {
+    margin: 0 auto;
+  }
+  
