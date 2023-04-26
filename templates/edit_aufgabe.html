@@ -3,6 +3,25 @@
     <title>Aufgabe bearbeiten</title>
   </head>
   <body>
+
+
+    <nav id="nav" class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
+      <div class="container-fluid">
+        <a class="navbar-brand">
+          <img src="{{ url_for('static', filename= 'files/logoq2.PNG') }}" alt="Bootstrap" width="200" height="50">
+          Personal Organizer</a>
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                  <a class="nav-link" href="/">Home</a>
+              </li>
+          </ul>
+          <form style="margin-top: 15px"name="uhr" class="text-center">
+              <h4><input type="button" class="btn btn-outline-dark bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 10px"class="bi bi-clock"></i></h4>
+          </form>
+      </div>
+    </nav>
+
+
     <h1>Aufgabe bearbeiten</h1>
     <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[0], name=aufgabe[1]) }}" >
         <label for="name">Aufgabe</label>

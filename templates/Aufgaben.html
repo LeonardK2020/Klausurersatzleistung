@@ -26,7 +26,7 @@
 
         <form class="container"action="/newTask" method="POST">
             <label for="name">Aufgabe</label><br>
-            <input placeholder="Müll rausbringen..."type="text" id="name" name="name" required><br>
+            <input placeholder="Müll rausbringen..."type="text" id="name" name="name" required><br><br> 
         
             <label for="aufgaben_tag">Tag</label><br>
             <select id="aufgaben_tag" name="aufgaben_tag" required>
@@ -34,21 +34,26 @@
                 <option value="{{ tag }}">{{ tag }}</option>
                 {% endfor %}
             </select>
-        
+            <br> 
+            <br> 
+            
             <label for="aufgaben_monat">Monat</label><br>
             <select id="aufgaben_monat" name="aufgaben_monat" required>
                 {%for monat in range(1, 13)%}
                 <option value="{{ monat }}">{{ monat }}</option>
                 {% endfor %}
-            </select>
-
+            </select>Monat
+            <br> 
+            <br>        
             <label for="priorität">Priorität</label><br>
             <select id="priorität" name="priorität">
                 <option value="Niedrig">Niedrig</option>
                 <option value="Mittel">Mittel</option>
                 <option value="Hoch">Hoch</option>
             </select>
-                    
+            <br> 
+            <br> 
+            <br>
             <button type="submit" class="submitbtn">Neue Aufgabe hinzufügen</button>
         </form>
         
