@@ -7,8 +7,8 @@
     </head>
 
 
-    <body class="container shadow" onLoad="uhrzeit();">
-        <nav class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
+    <body class="container shadow" style="background-color: rgba(255, 255, 255, 0.671)" onLoad="uhrzeit();">
+        <nav id="nav" class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
             <div class="container-fluid">
               <a class="navbar-brand">
                 <img src="{{ url_for('static', filename= 'files/logoq2.PNG') }}" alt="Bootstrap" width="200" height="50">
@@ -36,6 +36,7 @@
                  {%for aufgabe in aufgaben%}
                     {% if aufgabe[3] == "Hoch" %}
                         <tr style="background-color: red;">
+                        
                     {% elif aufgabe[3] == "Mittel" %}
                         <tr style="background-color: yellow;">
                     {% elif aufgabe[3] == "Niedrig" %}
@@ -53,7 +54,7 @@
 
                         <td>
                         <form action="" method="post">
-                            <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger">Löschen</a></td>
+                            <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
                         </form>
                         </td>
                     </tr>
