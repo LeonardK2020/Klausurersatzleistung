@@ -36,12 +36,13 @@ def newTask():
         aufgaben_tag = request.form.get('aufgaben_tag')
         aufgaben_monat = request.form.get('aufgaben_monat')
         aufgaben_priorität = request.form.get('priorität')
+        banner=False
         
         try:
             connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat, priorität) VALUES (?, ?, ?, ?);", (aufgaben_name, aufgaben_tag, aufgaben_monat, aufgaben_priorität))
             connection.commit()
             connection.close()
-            success=True
+            banner=True
             #return "Die Aufgabe wurde erfolgreich hinzugefügt."
         except sqlite3.Error as error:
             return "Es gab ein Problem beim Hinzufügen dieser Aufgabe." + str(error)
