@@ -37,29 +37,71 @@
                 </tr>
                  {%for aufgabe in aufgaben%}
                     {% if aufgabe[3] == "Hoch" %}
-                        <tr style="background-color: red;">
-                        
+                        <tr>
+                            <td>{{aufgabe[0]}}</td>
+                            <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
+                            <td style="background-color: red;">{{aufgabe[3]}}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
+                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="" method="post">
+                                    <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
+                                </form>
+                            </td>
+                        </tr>
                     {% elif aufgabe[3] == "Mittel" %}
-                        <tr style="background-color: yellow;">
+                        <tr>
+                            <td>{{aufgabe[0]}}</td>
+                            <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
+                            <td style="background-color: yellow;">{{aufgabe[3]}}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
+                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="" method="post">
+                                    <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
+                                </form>
+                            </td>
+                        </tr>
                     {% elif aufgabe[3] == "Niedrig" %}
-                        <tr style="background-color: green ;">
-                    {% endif %}
-                        <td>{{aufgabe[0]}}</td>
-                        <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
-                        <td>{{aufgabe[3]}}</td>
-                        
-                        <td>
-                            <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
-                              <input class="btn btn-secondary" type="submit" value="Bearbeiten">
-                            </form>
-                        </td>
+                        <tr>
+                            <td>{{aufgabe[0]}}</td>
+                            <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
+                            <td style="background-color: green;">{{aufgabe[3]}}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
+                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="" method="post">
+                                    <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
+                                </form>
+                            </td>
+                        </tr>
 
-                        <td>
-                        <form action="" method="post">
-                            <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
-                        </form>
-                        </td>
-                    </tr>
+                    {% elif aufgabe[3] == "None" %}
+                        <tr>
+                            <td>{{aufgabe[0]}}</td>
+                            <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
+                            <td style="background-color: rgb(255, 255, 255);">{{aufgabe[3]}}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
+                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
+                                </form>
+                            </td>
+                            <td>
+                                <form action="" method="post">
+                                    <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endif %}
                  {% endfor %}
             </table>
             <a href="/Aufgaben" class="btn btn-primary">Aufgaben hinzufügen</a>
