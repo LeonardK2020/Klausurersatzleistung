@@ -4,11 +4,12 @@
         <link rel="stylesheet" href="{{ url_for('static', filename= 'css/index.css') }}">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+        <title>Jot All Life: The ultimate personal organizer</title>
     </head>
 
 
-    <body class="container shadow" onLoad="uhrzeit();">
-        <nav class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
+    <body class="container shadow" style="background-color: rgba(255, 255, 255, 0.671)" onLoad="uhrzeit();">
+        <nav id="nav" class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
             <div class="container-fluid">
               <a class="navbar-brand">
                 <img src="{{ url_for('static', filename= 'files/logoq2.PNG') }}" alt="Bootstrap" width="200" height="50">
@@ -36,6 +37,7 @@
                  {%for aufgabe in aufgaben%}
                     {% if aufgabe[3] == "Hoch" %}
                         <tr style="background-color: red;">
+                        
                     {% elif aufgabe[3] == "Mittel" %}
                         <tr style="background-color: yellow;">
                     {% elif aufgabe[3] == "Niedrig" %}
@@ -47,13 +49,13 @@
                         
                         <td>
                             <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
-                              <input type="submit" value="Bearbeiten">
+                              <input class="btn btn-secondary" type="submit" value="Bearbeiten">
                             </form>
                         </td>
 
                         <td>
                         <form action="" method="post">
-                            <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger">Löschen</a></td>
+                            <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
                         </form>
                         </td>
                     </tr>
@@ -80,12 +82,12 @@
                         <td>{{termin[6]}}</td>
                         <td>
                             <form method="POST" action="{{ url_for('edit_termin', termin_id=termin[7], name=termin[0]) }}">
-                              <input type="submit" value="Bearbeiten">
+                              <input class="btn btn-secondary"type="submit" value="Bearbeiten">
                             </form>
                         </td>
                         <td>
                             <form action="" method="post">
-                                <td><a href="/remove_termin/{{termin[7]}}" class="btn btn-danger">Löschen</a></td>
+                                <td><a href="/remove_termin/{{termin[7]}}" class="btn btn-danger bi bi-trash3"></a></td>
                             </form>
                         </td>
                     </tr>
@@ -129,4 +131,4 @@ function datum (){
 }
 </script>
 
-<!--Hier wird x/y/z <10 gesetzt, damit z.B. 10:09:17 und nicht 10:9:17 angezeigt wird-->
+<!--Hier wird h/m/s <10 gesetzt, damit z.B. 10:09:17 und nicht 10:9:17 angezeigt wird-->

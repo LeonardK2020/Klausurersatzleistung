@@ -1,6 +1,7 @@
 import sqlite3
 from flask import Flask, render_template, request, redirect, flash
 from flask_bootstrap import Bootstrap
+import time
 
 app = Flask(__name__)
 
@@ -24,7 +25,7 @@ def startseite():
 
 @app.route("/Aufgaben")
 def Aufgaben():
-    return render_template("Aufgaben.html")
+    return render_template("Aufgaben.html", banner=False)
 
 @app.route("/newTask", methods=["POST"])
 def newTask():
@@ -35,17 +36,19 @@ def newTask():
         aufgaben_tag = request.form.get('aufgaben_tag')
         aufgaben_monat = request.form.get('aufgaben_monat')
         aufgaben_priorität = request.form.get('priorität')
+
         
         try:
             connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat, priorität) VALUES (?, ?, ?, ?);", (aufgaben_name, aufgaben_tag, aufgaben_monat, aufgaben_priorität))
             connection.commit()
             connection.close()
-            return "Die Aufgabe wurde erfolgreich hinzugefügt."
+            
+            #return "Die Aufgabe wurde erfolgreich hinzugefügt."
         except sqlite3.Error as error:
             return "Es gab ein Problem beim Hinzufügen dieser Aufgabe." + str(error)
         
 
-    return render_template("Aufgaben.html")
+    return render_template("Aufgaben.html", banner=True)
 
 
 @app.route("/remove_aufgabe/<aufgaben_id>", methods=["GET", "POST"])
@@ -98,7 +101,7 @@ def Kalender():
 
 @app.route("/Termine")
 def Termine():
-    return render_template("Termine.html")
+    return render_template("Termine.html", banner=False)
 
 @app.route("/newDate", methods=["POST"])
 def newDate():
@@ -120,7 +123,7 @@ def newDate():
             return "Der Termin wurde erfolgreich hinzugefügt."
         except sqlite3.Error as error:
             return "Es gab ein Problem beim Hinzufügen dieses Termins." + str(error)
-    return render_template("Termine.html")
+    return render_template("Termine.html", banner=True)
 
 
 @app.route("/remove_termin/<termin_id>", methods=["GET", "POST"])
@@ -175,9 +178,3 @@ def login():
 if __name__ == '__main__':  
 
     app.run(debug=True)
-
-#datenbank Befehle
-#connection = sqlite3.connect('user.db')
-#connection.execute()
-#connection.commit()
-#connection.close()
