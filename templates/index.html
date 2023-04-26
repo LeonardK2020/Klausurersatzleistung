@@ -22,6 +22,7 @@
                 <form style="margin-top: 15px"name="uhr" class="text-center">
                     <h4><input type="button" class="btn btn-outline-dark bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 10px"class="bi bi-clock"></i></h4>
                 </form>
+                <div id="current_date"></p></div>
             </div>
         </nav>
 
@@ -125,10 +126,11 @@ uhrzeit
     setInterval(uhrzeit, 1000);
 
 
-function datum (){
-    date = new Date().toLocaleDateString();
-    document.write(date);
-}
+    date = new Date();
+    year = date.getFullYear();
+    month = date.getMonth() + 1;
+    day = date.getDate();
+    document.getElementById("current_date").innerHTML = day + "." + month + "." + year;
 </script>
 
 <!--Hier wird h/m/s <10 gesetzt, damit z.B. 10:09:17 und nicht 10:9:17 angezeigt wird-->

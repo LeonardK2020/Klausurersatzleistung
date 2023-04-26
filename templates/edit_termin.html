@@ -62,3 +62,25 @@
     </form>
   </body>
 </html>
+
+<script>
+  function uhrzeit() {
+      var act = new Date();
+      var h= act.getHours();
+      if  (h <10) { h="0"+h; }
+      var m= act.getMinutes();
+      if  (m <10) { m="0"+m; }
+      var s= act.getSeconds();
+      if  (s <10) { s="0"+s; }
+      document.uhr.uhrbutton.value = h+":"+m+":"+s;
+  }
+
+  setInterval(uhrzeit, 1000);
+
+
+  date = new Date();
+  year = date.getFullYear();
+  month = date.getMonth() + 1;
+  day = date.getDate();
+  document.getElementById("current_date").innerHTML = day + "." + month + "." + year;
+</script>
