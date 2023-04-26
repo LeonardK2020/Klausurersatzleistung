@@ -51,6 +51,25 @@
             <button type="submit" class="submitbtn">Neue Aufgabe hinzufügen</button>
         </form>
         
+        {% if banner==True %}
+            <a href="#" class="badge badge-success">Die Aufgabe wurde erfolgreich hinzugefügt! Klicke mich um zurück zur Startseite zu gelangen!</a>
+        {% endif %}
 
     </body>
 </html>
+
+<script>
+    function uhrzeit() {
+        var act = new Date();
+        var h= act.getHours();
+        if  (h <10) { h="0"+h; }
+        var m= act.getMinutes();
+        if  (m <10) { m="0"+m; }
+        var s= act.getSeconds();
+        if  (s <10) { s="0"+s; }
+        document.uhr.uhrbutton.value = h+":"+m+":"+s;
+    }
+
+    setInterval(uhrzeit, 1000);
+
+</script>
