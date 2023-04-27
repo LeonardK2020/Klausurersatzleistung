@@ -8,14 +8,17 @@
 }
 
 table{
-  border:3px solid white;
   box-shadow: 3px 3px 3px rgba(63, 61, 61, 0);
   background-color:#5e798fe7;
-  border-collapse: collapse;
+  border-radius: 20px;
 }
 
-th, td{
-  border: 3px solid white;
+th:first-child{
+  border-radius: 20px 0 0 0;
+}
+
+th:last-child{
+  border-radius: 0 20px 0 0;
 }
 
 thead, #thead1, #thead2{
@@ -23,6 +26,10 @@ thead, #thead1, #thead2{
   background-color: #011a86dc;
 }
 
+tr:nth-child(even){
+  background-color: #364a5a;
+
+}
 
 ::placeholder {
     color: rgba(253, 252, 252, 0.171)
