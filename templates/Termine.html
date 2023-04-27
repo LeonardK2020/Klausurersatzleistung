@@ -6,16 +6,21 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <title>Termin hinzufügen</title>
     </head>
-    <body>
-        <nav class="navbar sticky-top bg-body-tertiary navbar-expand-lg">
+    <body id="body1"class="container Shadow-lg" onLoad="uhrzeit();">
+        <nav id="nav" class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
             <div class="container-fluid">
-              <a class="navbar-brand">Personal Organizer</a>
+              <a class="navbar-brand">
+                <img src="{{ url_for('static', filename= 'files/logoq2.PNG') }}" alt="Bootstrap" width="200" height="50">
+                The ultimate personal organizer</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
                 </ul>
-                
+                <form style="margin-top: 15px"name="uhr" class="text-center">
+                    <h4><input type="button" class="btn btn-outline-light bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 5px; margin-right:10px"class="bi bi-clock"></i></h4>
+                </form>
+                <div style="margin-top:-15px"id="current_date"></p></div>
             </div>
         </nav>
         
@@ -24,7 +29,7 @@
             <input type="text" id="name" name="name" required><br>
         
             <label for="wochentag">Wochentag</label><br>
-            <select id="wochentag" name="wochentag">
+            <select class="form-dropdown"id="wochentag" name="wochentag">
                 <option value="Montag">Montag</option>
                 <option value="Dienstag">Dienstag</option>
                 <option value="Mittwoch">Mittwoch</option>
@@ -36,14 +41,14 @@
             
 
             <label for="datum_tag">Tag</label><br>
-            <select id="datum_tag" name="datum_tag" required>
+            <select class="form-dropdown"id="datum_tag" name="datum_tag" required>
                 {%for tag in range(1, 32)%}
                 <option value="{{ tag }}">{{ tag }}</option>
                 {% endfor %}
             </select>
         
             <label for="datum_monat">Monat</label><br>
-            <select id="datum_monat" name="datum_monat" required>
+            <select class="form-dropdown"id="datum_monat" name="datum_monat" required>
                 {%for monat in range(1, 13)%}
                 <option value="{{ monat }}">{{ monat }}</option>
                 {% endfor %}
@@ -58,7 +63,7 @@
             <label for="uhrzeit_ende">Ende</label><br>
             <input type="text" id="uhrzeit_ende" name="uhrzeit_ende"><br>
                     
-            <button type="submit" class="submitbtn">Neuen Termin hinzufügen</button>
+            <button id="button" type="submit" class="submitbtn">Neuen Termin hinzufügen</button>
         </form>
         
         {% if banner %}
