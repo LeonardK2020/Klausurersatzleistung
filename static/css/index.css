@@ -1,17 +1,28 @@
-/*#aufgaben {
-    
+*{
+  color: white;
+}
+#body1{
+  background-color: #273846e1;
+  justify-content: center;
+  align-items: center
 }
 
-#termine{
-
-
+table{
+  border:3px solid white;
+  box-shadow: 3px 3px 3px rgba(63, 61, 61, 0);
+  background-color:#5e798fe7;
+  border-collapse: collapse;
 }
 
-#kalender {
-
-    
+th, td{
+  border: 3px solid white;
 }
-*/
+
+thead, #thead1, #thead2{
+  box-shadow:rgba(63, 61, 61, 0);
+  background-color: #011a86dc;
+}
+
 
 ::placeholder {
     color: rgba(253, 252, 252, 0.171)
