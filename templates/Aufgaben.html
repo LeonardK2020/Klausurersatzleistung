@@ -6,8 +6,8 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
         <title>Aufgabe hinzufügen</title>
     </Head>
-    <body class="container shadow" onLoad="uhrzeit();">
-        <nav class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
+    <body id="body1"class="container shadow-lg" onLoad="uhrzeit();">
+        <nav class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;color: white">
             <div class="container-fluid">
               <a class="navbar-brand">
                 <img src="{{ url_for('static', filename= 'files/logoq2.PNG') }}" alt="Bootstrap" width="200" height="50">
@@ -18,9 +18,9 @@
                     </li>
                 </ul>
                 <form style="margin-top: 15px"name="uhr" class="text-center">
-                    <h4><input type="button" class="btn btn-outline-dark bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 10px"class="bi bi-clock"></i></h4>
+                    <h4><input type="button" class="btn btn-outline-light bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 5px; margin-right:10px"class="bi bi-clock"></i></h4>
                 </form>
-                <div id="current_date"></p></div>
+                <div style="margin-top:-15px"id="current_date"></p></div>
             </div>
         </nav>
 
@@ -55,7 +55,7 @@
             <br> 
             <br> 
             <br>
-            <button type="submit" class="submitbtn">Neue Aufgabe hinzufügen</button>
+            <button id="button"type="submit" class="submitbtn">Neue Aufgabe hinzufügen</button>
         </form>
         
         {% if banner %}
