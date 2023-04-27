@@ -4,7 +4,7 @@
 #body1{
   background-color: #202e39;
   justify-content: center;
-  align-items: center
+  align-items: center;
 }
 
 table{
@@ -23,7 +23,6 @@ th:last-child{
 }
 
 thead, #thead1, #thead2{
-  box-shadow:0 3px 6px #00000030;
   background-color: royalblue;
 }
 
