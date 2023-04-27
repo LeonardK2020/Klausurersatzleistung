@@ -1,17 +1,35 @@
-/*#aufgaben {
-    
+*{
+  color: white;
+}
+#body1{
+  background-color: #202e39;
+  justify-content: center;
+  align-items: center;
 }
 
-#termine{
-
-
+table{
+  box-shadow: 3px 3px 3px rgba(63, 61, 61, 0);
+  background-color:#2c3d4b;
+  border-radius: 20px;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1)
 }
 
-#kalender {
-
-    
+th:first-child{
+  border-radius: 20px 0 0 0;
 }
-*/
+
+th:last-child{
+  border-radius: 0 20px 0 0;
+}
+
+thead, #thead1, #thead2{
+  background-color: royalblue;
+}
+
+tr:nth-child(even){
+  background-color: #364a5a;
+
+}
 
 ::placeholder {
     color: rgba(253, 252, 252, 0.171)

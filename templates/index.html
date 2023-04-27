@@ -8,32 +8,35 @@
     </head>
 
 
-    <body class="container shadow" style="background-color: rgba(255, 255, 255, 0.671)" onLoad="uhrzeit(); initializeCalendar();">
+    <body id="body1"class="container shadow-lg" onLoad="uhrzeit(); initializeCalendar();">
         <nav id="nav" class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
             <div class="container-fluid">
               <a class="navbar-brand">
                 <img src="{{ url_for('static', filename= 'files/logoq2.PNG') }}" alt="Bootstrap" width="200" height="50">
-                Personal Organizer</a>
+                The ultimate personal organizer</a>
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link" href="/">Home</a>
                     </li>
                 </ul>
                 <form style="margin-top: 15px"name="uhr" class="text-center">
-                    <h4><input type="button" class="btn btn-outline-dark bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 10px"class="bi bi-clock"></i></h4>
+                    <h4><input type="button" class="btn btn-outline-light bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 10px"class="bi bi-clock"></i></h4>
                 </form>
                 <div id="current_date"></p></div>
             </div>
         </nav>
 
        
-            <div style="margin-top: 15px" id="aufgaben" class="col text-center container-fluid border rounded">
+            <div style="margin-top: 15px" id="aufgaben" class="col text-center container-fluid">
               <h2>Aufgaben</h2>
-              <table class="table table-bordered mx-auto">
-                <tr>
+              <table id="aufgabentable"class="table mx-auto table table-borderless">
+                <tr id="thead1">
                     <th>Aufgabe</th>
                     <th>Fälligkeitsdatum</th>
                     <th>Priorität</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                  {%for aufgabe in aufgaben%}
                     {% if aufgabe[3] == "Hoch" %}
@@ -104,17 +107,20 @@
                     {% endif %}
                  {% endfor %}
             </table>
-            <a href="/Aufgaben" class="btn btn-primary">Aufgaben hinzufügen</a>
+            <a href="/Aufgaben" class="btn btn-primary bi bi-plus"></a>
             </div>
-            <div id="termine" style="margin-top: 30px" class="col text-center container-fluid border rounded">
+            <div id="termine" style="margin-top: 30px" class="col text-center container-fluid">
               <h2>Termine</h2>
-              <table class="table table-bordered mx-auto">
-                <tr>
+              <table class="table mx-auto table table-borderless">
+                <tr id="thead2">
                     <th>Termin</th>
                     <th>Datum</th>
                     <th>Wochentag</th>
                     <th>Anfang</th>
                     <th>Ende</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
                 </tr>
                  {%for termin in termine%}
                     <tr>
@@ -136,7 +142,7 @@
                     </tr>
                  {% endfor %}
             </table>
-            <a href="/Termine" class="btn btn-primary mt-3 mx-auto d-block">Termine hinzufügen</a>
+            <a href="/Termine" class="btn btn-primary mt-3 mx-auto d-block bi bi-plus"></a>
             </div>
             <div id="calendar" style="margin-top: 30px" class="col text-center container-fluid border rounded">
               <h2>Kalender</h2>
