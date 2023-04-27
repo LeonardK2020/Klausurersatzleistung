@@ -3,8 +3,9 @@
     <title>Aufgabe bearbeiten</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/edit_aufgaben.css') }}">
   </head>
-  <body onLoad="uhrzeit();">
+  <body id="body1"class="container shadow-lg"onLoad="uhrzeit();">
 
 
     <nav id="nav" class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
@@ -18,9 +19,9 @@
               </li>
           </ul>
           <form style="margin-top: 15px"name="uhr" class="text-center">
-              <h4><input type="button" class="btn btn-outline-dark bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 10px"class="bi bi-clock"></i></h4>
+              <h4><input type="button" class="btn btn-outline-light bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 5px; margin-right:10px"class="bi bi-clock"></i></h4>
           </form>
-          <div id="current_date"></p></div>
+          <div style="margin-top:-15px" id="current_date"></p></div>
       </div>
     </nav>
 
