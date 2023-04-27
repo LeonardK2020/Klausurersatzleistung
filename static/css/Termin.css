@@ -1,0 +1,23 @@
+*{
+    color:white;
+}
+#body1{
+    background-color: #202e39;
+    justify-content: center;
+    align-items: center;
+}
+
+#wochentag, #datum_tag, #datum_monat{
+    background-color:#2c3d4b;
+}
+
+.form-dropdown option{
+    background-color: #2c3d4b;
+}
+
+#button{
+    background-color:#4CAF50 ;
+}
+input{
+    background-color: #2c3d4b;
+}
