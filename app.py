@@ -7,7 +7,7 @@ app = Flask(__name__)
 
 Bootstrap = Bootstrap(app)
 
-@app.route("/")
+@app.route("/index")
 def startseite():
     connection = sqlite3.connect('datenbank.db')
     cursor = connection.cursor()
