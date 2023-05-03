@@ -2,12 +2,12 @@ import sqlite3
 from flask import Flask, render_template, request, redirect, flash
 from flask_bootstrap import Bootstrap
 import time
-
+import flask_login
 app = Flask(__name__)
 
 Bootstrap = Bootstrap(app)
 
-@app.route("/")
+@app.route("/index")
 def startseite():
     connection = sqlite3.connect('datenbank.db')
     cursor = connection.cursor()
