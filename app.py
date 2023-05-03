@@ -3,6 +3,13 @@ from flask import Flask, render_template, request, redirect, flash
 from flask_bootstrap import Bootstrap
 import time
 import flask_login
+import flask
+
+#app = flask.Flask(__name__)
+#app.secret_key = 'super secret string'  # Change this!
+
+#login_manager = flask_login.LoginManager()
+#login_manager.init_app(app)
 app = Flask(__name__)
 
 Bootstrap = Bootstrap(app)
