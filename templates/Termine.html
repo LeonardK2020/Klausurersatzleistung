@@ -23,10 +23,10 @@
                 <div style="margin-top:-15px"id="current_date"></p></div>
             </div>
         </nav>
-        
+        <br><br>
         <form action="/newDate" method="POST">
             <label for="name">Termin</label><br>
-            <input type="text" id="name" name="name" required><br>
+            <input type="text" id="name" name="name" required><br><br>
         
             <label for="wochentag">Wochentag</label><br>
             <select class="form-dropdown"id="wochentag" name="wochentag">
@@ -38,7 +38,7 @@
                 <option value="Samstag">Samstag</option>
                 <option value="Sonntag">Sonntag</option>
             </select>
-            
+            <br><br>
 
             <label for="datum_tag">Tag</label><br>
             <select class="form-dropdown"id="datum_tag" name="datum_tag" required>
@@ -46,23 +46,22 @@
                 <option value="{{ tag }}">{{ tag }}</option>
                 {% endfor %}
             </select>
-        
+            <br><br>
             <label for="datum_monat">Monat</label><br>
             <select class="form-dropdown"id="datum_monat" name="datum_monat" required>
                 {%for monat in range(1, 13)%}
                 <option value="{{ monat }}">{{ monat }}</option>
                 {% endfor %}
             </select>
-
+            <br><br>
             <label for="datum_jahr">Jahr</label><br>
-            <input type="number" id="datum_jahr" name="datum_jahr" required><br>
-
+            <input type="number" id="datum_jahr" name="datum_jahr" required><br><br>
             <label for="uhrzeit_anfang">Beginn</label><br>
-            <input type="text" id="uhrzeit_anfang" name="uhrzeit_anfang"><br>
+            <input type="text" id="uhrzeit_anfang" name="uhrzeit_anfang"><br><br>
 
             <label for="uhrzeit_ende">Ende</label><br>
             <input type="text" id="uhrzeit_ende" name="uhrzeit_ende"><br>
-                    
+            <br><br> <br>     
             <button id="button" type="submit" class="submitbtn">Neuen Termin hinzufügen</button>
         </form>
         
