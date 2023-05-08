@@ -5,6 +5,19 @@ import time
 import flask_login
 import flask
 
+#flask wtf login
+
+from flask_wtf import FlaskForm
+from wtforms import StringField
+from wtforms.validators import DataRequired
+
+class MyForm(FlaskForm):
+    name = StringField('name', validators=[DataRequired()])
+
+# flask wt flogin
+
+
+
 #app = flask.Flask(__name__)
 #app.secret_key = 'super secret string'  # Change this!
 
