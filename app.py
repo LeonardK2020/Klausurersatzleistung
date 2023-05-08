@@ -4,32 +4,20 @@ from flask_bootstrap import Bootstrap
 import time
 import flask_login
 import flask
-
-#flask wtf login
-
-from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired
-
-class MyForm(FlaskForm):
-    name = StringField('name', validators=[DataRequired()])
-
-# flask wt flogin
+from model import RegForm
 
 
-
-#app = flask.Flask(__name__)
-#app.secret_key = 'super secret string'  # Change this!
-
-#login_manager = flask_login.LoginManager()
-#login_manager.init_app(app)
 app = Flask(__name__)
 
 Bootstrap = Bootstrap(app)
 
-@app.route("/")
-def login():
-    return render_template
+app.config.from_mapping(
+    SECRET_KEY=b'\xd6\x04\xbdj\xfe\xed$c\x1e@\xad\x0f\x13,@G')
+@app.route('/', methods=['GET', 'POST'])
+def registration():
+    if request.method == 'POST':
+        return 'Registrierung bestätigt!'
+    return render_template('registration.html')
 
 @app.route("/index")
 def startseite():
