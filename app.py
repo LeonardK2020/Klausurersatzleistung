@@ -28,7 +28,8 @@ app = Flask(__name__)
 Bootstrap = Bootstrap(app)
 
 @app.route("/")
-
+def login():
+    return render_template
 
 @app.route("/index")
 def startseite():
