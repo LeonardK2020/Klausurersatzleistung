@@ -6,6 +6,7 @@ import flask_login
 import flask
 from module import RegForm #auf model.py anpassen
 import module
+from wtforms import validators
 
 app = Flask(__name__)
 
