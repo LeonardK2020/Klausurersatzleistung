@@ -18,6 +18,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/index">Home</a>
                     </li>
+                    {% if session.name %}
+                        Du bist eingeloggt als {{ session.name }} <a href="/logout"> logout</a>.
+                    {% else %}
+                        Du bist nicht eingeloggt. <a href="/login">login</a>.
+                    {% endif %}
                 </ul>
                 <form style="margin-top: 15px"name="uhr" class="text-center">
                     <h4><input type="button" class="btn btn-outline-light bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 5px; margin-right:10px"class="bi bi-clock"></i></h4>
