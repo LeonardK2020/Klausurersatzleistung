@@ -7,7 +7,7 @@ import flask
 from module import RegForm #auf model.py anpassen
 import module
 from wtforms import validators
-
+from flask_session import Session
 app = Flask(__name__)
 
 Bootstrap = Bootstrap(app)
