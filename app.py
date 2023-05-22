@@ -1,8 +1,8 @@
 import sqlite3
-from flask import Flask, render_template, request, redirect, flash, session
+from flask import Flask, render_template, request, redirect, flash, session, url_for
 from flask_bootstrap import Bootstrap
 import time
-import flask_login
+#import flask_login
 import flask
 from flask_session import Session
 
@@ -23,8 +23,9 @@ def login():
         user = cursor.fetchone()
         if user:
             session["name"] = name
+            return redirect(url_for('startseite'))
         else:
-            return render_template("login.html", error="Invalid username")
+            return render_template("index.html", error="Invalid username")
         return redirect("/index")
     return render_template("login.html")
 
