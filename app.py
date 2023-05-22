@@ -4,22 +4,29 @@ from flask_bootstrap import Bootstrap
 import time
 import flask_login
 import flask
-#from module import RegForm #auf model.py anpassen
-#import module
-#from wtforms import validators
+from flask_session import Session
 
 app = Flask(__name__)
+app.config["SESSION_PERMANENT"] = False
+app.config["SESSION_TYPE"] = "filesystem"
+Session(app)
 
 Bootstrap = Bootstrap(app)
 
-#app.config.from_mapping(
-#    SECRET_KEY=b'\xd6\x04\xbdj\xfe\xed$c\x1e@\xad\x0f\x13,@G')
 @app.route('/', methods=['GET', 'POST'])
-#def registration():
- #   form = module.RegForm(request.form)      #model davorgeschrieben
-  #  if request.method == 'POST' and form.validate_on_submit():
-   #     return 'Registrierung bestätigt!'
-    #return render_template('registration.html', form=form)
+def login():
+    if request.method == "POST":
+        name = request.form.get("name")
+        connection = sqlite3.connect('datenbank.db')
+        cursor = connection.cursor()
+        cursor.execute("SELECT* FROM benutzer WHERE benutzername=?", (name))
+        user = cursor.fetchone()
+        if user:
+            session["name"] = name
+        else:
+            return render_template("login.html", error="Invalid username")
+        return redirect("/index")
+    return render_template("login.html")
 
 @app.route("/index")
 def startseite():
@@ -35,6 +42,17 @@ def startseite():
     connection.close()
     return render_template("index.html", aufgaben=aufgaben, termine=termine)
 
+#@app.route("/login", methods=["POST", "GET"])
+#def login():
+#	if request.method == "POST":
+#		session["name"] = request.form.get("name")
+#		return redirect("/")
+#	return render_template("login.html")
+
+@app.route("/logout")
+def logout():
+	session["name"] = None
+	return redirect("/")
 
 
 @app.route("/Aufgaben")
@@ -183,11 +201,6 @@ def edit_termin(termin_id):
         connection.close()
         return render_template('edit_termin.html', termin=termin)
 
-
-@app.route("/login")
-
-def login():
-    return render_template("login.html")
 
 if __name__ == '__main__':  
 
