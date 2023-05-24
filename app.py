@@ -19,7 +19,8 @@ def login():
         name = request.form.get("name")
         connection = sqlite3.connect('datenbank.db')
         cursor = connection.cursor()
-        cursor.execute("SELECT* FROM benutzer WHERE benutzername=?", (name))
+        #cursor.execute("SELECT* FROM benutzer WHERE benutzername=?", (name))
+        cursor.execute(f"SELECT* FROM benutzer WHERE benutzername='{name}'")
         user = cursor.fetchone()
         if user:
             session["name"] = name
