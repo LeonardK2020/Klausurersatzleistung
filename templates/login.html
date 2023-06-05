@@ -1,11 +1,18 @@
-
 <body>
+    <h1>Login</h1>
 
-<h1> Login </h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li class="flash-{{ message[1] }}">{{ message[0] }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
 
     <form action="/" method="POST">
         <input placeholder="Name" autocomplete="off" type="text" name="name">
         <input type="submit" name="Register">
     </form>
-
 </body>

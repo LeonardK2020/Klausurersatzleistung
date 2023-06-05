@@ -7,6 +7,7 @@ import flask
 from flask_session import Session
 
 app = Flask(__name__)
+app.secret_key = b'secret key 1010'
 app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
@@ -19,15 +20,14 @@ def login():
         name = request.form.get("name")
         connection = sqlite3.connect('datenbank.db')
         cursor = connection.cursor()
-        #cursor.execute("SELECT* FROM benutzer WHERE benutzername=?", (name))
         cursor.execute(f"SELECT* FROM benutzer WHERE benutzername='{name}'")
         user = cursor.fetchone()
         if user:
             session["name"] = name
             return redirect(url_for('startseite'))
         else:
-            return render_template("index.html", error="Invalid username")
-        return redirect("/index")
+            flash("Ungültiger Benutzername", "error")
+            return redirect(url_for('login'))
     return render_template("login.html")
 
 @app.route("/index")
