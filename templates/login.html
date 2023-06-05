@@ -5,7 +5,7 @@
         {% if messages %}
             <ul class="flashes">
                 {% for message in messages %}
-                    <li class="flash-{{ message[1] }}">{{ message[0] }}</li>
+                    <li class="flash-{{ message[1] }}">{{ message }}</li>
                 {% endfor %}
             </ul>
         {% endif %}
