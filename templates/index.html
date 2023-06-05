@@ -1,117 +1,86 @@
-<html>
-    <head>
-     {{bootstrap.load_css()}}
-        <link rel="stylesheet" href="{{ url_for('static', filename= 'css/index.css') }}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-        <title>Jot All Life: The ultimate personal organizer</title>
-    </head>
+{% extends 'layout.html' %}
 
+{% block content %}
+    <div style="margin-top: 15px" id="aufgaben" class="col text-center container-fluid">
+        <h2>Aufgaben</h2>
+        <table id="aufgabentable" class="table mx-auto table table-borderless">
+            <tr id="thead1">
+                <th>Aufgabe</th>
+                <th>Fälligkeitsdatum</th>
+                <th>Priorität</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for aufgabe in aufgaben %}
+                {% if aufgabe[3] == "Hoch" %}
+                    <tr>
+                        <td>{{ aufgabe[0] }}</td>
+                        <td>{{ aufgabe[1] }}.{{ aufgabe[2] }}.</td>
+                        <td style="background-color: rgba(201, 16, 16, 0.774);">{{ aufgabe[3] }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
+                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="" method="post">
+                                <td><a href="/remove_aufgabe/{{ aufgabe[4] }}" class="btn btn-danger bi bi-trash3"></a></td>
+                            </form>
+                        </td>
+                    </tr>
+                {% elif aufgabe[3] == "Mittel" %}
+                    <tr>
+                        <td>{{ aufgabe[0] }}</td>
+                        <td>{{ aufgabe[1] }}.{{ aufgabe[2] }}.</td>
+                        <td style="background-color: rgba(255, 230, 7, 0.76);">{{ aufgabe[3] }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
+                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="" method="post">
+                                <td><a href="/remove_aufgabe/{{ aufgabe[4] }}" class="btn btn-danger bi bi-trash3"></a></td>
+                            </form>
+                        </td>
+                    </tr>
+                {% elif aufgabe[3] == "Niedrig" %}
+                    <tr>
+                        <td>{{ aufgabe[0] }}</td>
+                        <td>{{ aufgabe[1] }}.{{ aufgabe[2] }}.</td>
+                        <td style="background-color: rgba(0, 128, 0, 0.692);">{{ aufgabe[3] }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
+                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="" method="post">
+                                <td><a href="/remove_aufgabe/{{ aufgabe[4] }}" class="btn btn-danger bi bi-trash3"></a></td>
+                            </form>
+                        </td>
+                    </tr>
+                {% elif aufgabe[3] == "None" %}
+                    <tr>
+                        <td>{{ aufgabe[0] }}</td>
+                        <td>{{ aufgabe[1] }}.{{ aufgabe[2] }}.</td>
+                        <td style="background-color: rgb(255, 255, 255);">{{ aufgabe[3] }}</td>
+                        <td>
+                            <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
+                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
+                            </form>
+                        </td>
+                        <td>
+                            <form action="" method="post">
+                                <td><a href="/remove_aufgabe/{{ aufgabe[4] }}" class="btn btn-danger bi bi-trash3"></a></td>
+                            </form>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
 
-    <body id="body1"class="container shadow-lg" onLoad="uhrzeit(); initializeCalendar();">
-        <nav id="nav" class="navbar sticky-top navbar-expand-lg" style="background-color: #5B6EC5;">
-            <div class="container-fluid">
-              <a class="navbar-brand">
-                <img src="{{ url_for('static', filename= 'files/logoq2.PNG') }}" alt="Bootstrap" width="200" height="50">
-                The ultimate personal organizer</a>
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/index">Home</a>
-                    </li>
-                    {% if session.name %}
-                        Du bist eingeloggt als {{ session.name }} <a href="/logout"> logout</a>.
-                    {% else %}
-                        Du bist nicht eingeloggt. <a href="/login">login</a>.
-                    {% endif %}
-                </ul>
-                <form style="margin-top: 15px"name="uhr" class="text-center">
-                    <h4><input type="button" class="btn btn-outline-light bi bi-clock" name="uhrbutton" value="00:00:00"/><i style="margin-left: 5px; margin-right:10px"class="bi bi-clock"></i></h4>
-                </form>
-                <div style="margin-top:-15px"id="current_date"></p></div>
-            </div>
-        </nav>
-
-       
-            <div style="margin-top: 15px" id="aufgaben" class="col text-center container-fluid">
-              <h2>Aufgaben</h2>
-              <table id="aufgabentable"class="table mx-auto table table-borderless">
-                <tr id="thead1">
-                    <th>Aufgabe</th>
-                    <th>Fälligkeitsdatum</th>
-                    <th>Priorität</th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                </tr>
-                 {%for aufgabe in aufgaben%}
-                    {% if aufgabe[3] == "Hoch" %}
-                        <tr>
-                            <td>{{aufgabe[0]}}</td>
-                            <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
-                            <td style="background-color: rgba(201, 16, 16, 0.774);">{{aufgabe[3]}}</td>
-                            <td>
-                                <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
-                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
-                                </form>
-                            </td>
-                            <td>
-                                <form action="" method="post">
-                                    <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
-                                </form>
-                            </td>
-                        </tr>
-                    {% elif aufgabe[3] == "Mittel" %}
-                        <tr>
-                            <td>{{aufgabe[0]}}</td>
-                            <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
-                            <td style="background-color: rgba(255, 230, 7, 0.76);">{{aufgabe[3]}}</td>
-                            <td>
-                                <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
-                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
-                                </form>
-                            </td>
-                            <td>
-                                <form action="" method="post">
-                                    <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
-                                </form>
-                            </td>
-                        </tr>
-                    {% elif aufgabe[3] == "Niedrig" %}
-                        <tr>
-                            <td>{{aufgabe[0]}}</td>
-                            <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
-                            <td style="background-color: rgba(0, 128, 0, 0.692);">{{aufgabe[3]}}</td>
-                            <td>
-                                <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
-                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
-                                </form>
-                            </td>
-                            <td>
-                                <form action="" method="post">
-                                    <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
-                                </form>
-                            </td>
-                        </tr>
-
-                    {% elif aufgabe[3] == "None" %}
-                        <tr>
-                            <td>{{aufgabe[0]}}</td>
-                            <td>{{aufgabe[1]}}.{{aufgabe[2]}}.</td>
-                            <td style="background-color: rgb(255, 255, 255);">{{aufgabe[3]}}</td>
-                            <td>
-                                <form method="POST" action="{{ url_for('edit_aufgabe', aufgaben_id=aufgabe[4], name=aufgabe[0]) }}">
-                                <input class="btn btn-secondary" type="submit" value="Bearbeiten">
-                                </form>
-                            </td>
-                            <td>
-                                <form action="" method="post">
-                                    <td><a href="/remove_aufgabe/{{aufgabe[4]}}" class="btn btn-danger bi bi-trash3"></a></td>
-                                </form>
-                            </td>
-                        </tr>
-                    {% endif %}
-                 {% endfor %}
-            </table>
             <a href="/Aufgaben" class="btn btn-primary bi bi-plus"></a>
             </div>
             <div id="termine" style="margin-top: 30px" class="col text-center container-fluid">
@@ -180,12 +149,9 @@
 
 
         
-    </body>
 
+    </div>
 
-
-
-</html>
 
 
 
@@ -263,3 +229,4 @@ showCalendar();
 </script>
 
 <!--Hier wird h/m/s <10 gesetzt, damit z.B. 10:09:17 und nicht 10:9:17 angezeigt wird-->
+{% endblock %}
