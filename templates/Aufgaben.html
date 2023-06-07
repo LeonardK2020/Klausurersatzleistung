@@ -49,7 +49,7 @@
                 <div id="_aufgabe">Aufgabe:</div></label>
             <input placeholder="Müll rausbringen..."type="text" id="name" name="name" required><br><br> 
         
-            <label for="aufgaben_tag">Tag</label>
+            <!--<label for="aufgaben_tag">Tag</label>
             <select id="aufgaben_tag" name="aufgaben_tag" required>
                 {%for tag in range(1, 32)%}
                 <option value="{{ tag }}">{{ tag }}</option>
@@ -63,11 +63,14 @@
                 {%for monat in range(1, 13)%}
                 <option value="{{ monat }}">{{ monat }}</option>
                 {% endfor %}
-            </select>
+            </select> -->
 
+            <label for="aufgaben_datum"></label>
             <p class="datepicker">Datum <input type="text" id="datepicker" ></p> 
             <br> 
-            <br>        
+            <br>
+            
+            
             <label for="priorität">Priorität</label>
             <select id="priorität" name="priorität">
                 <option value="Niedrig">Niedrig</option>

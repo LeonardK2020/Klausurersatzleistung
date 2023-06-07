@@ -34,7 +34,7 @@ def login():
 def startseite():
     connection = sqlite3.connect('datenbank.db')
     cursor = connection.cursor()
-    cursor.execute("SELECT name, datum_abgabe_tag, datum_abgabe_monat, priorität, aufgaben_id FROM aufgaben;")
+    cursor.execute("SELECT name, datum, priorität, aufgaben_id FROM aufgaben;")
     aufgaben = cursor.fetchall()
     connection.close()
     connection = sqlite3.connect('datenbank.db')
@@ -67,13 +67,13 @@ def newTask():
         connection = sqlite3.connect('datenbank.db')
         cursor = connection.cursor()
         aufgaben_name = request.form.get('name')
-        aufgaben_tag = request.form.get('aufgaben_tag')
-        aufgaben_monat = request.form.get('aufgaben_monat')
+        aufgaben_datum = request.form.get('aufgaben_datum')
+        #aufgaben_monat = request.form.get('aufgaben_monat')
         aufgaben_priorität = request.form.get('priorität')
 
         
         try:
-            connection.execute("INSERT INTO aufgaben (name, datum_abgabe_tag, datum_abgabe_monat, priorität) VALUES (?, ?, ?, ?);", (aufgaben_name, aufgaben_tag, aufgaben_monat, aufgaben_priorität))
+            connection.execute("INSERT INTO aufgaben (name, datum, priorität) VALUES (?, ?, ?);", (aufgaben_name, aufgaben_datum, aufgaben_priorität))
             connection.commit()
             connection.close()
             
@@ -113,11 +113,11 @@ def edit_aufgabe(aufgaben_id):
 
     if request.method == 'POST':
         name = request.form.get('name')
-        aufgaben_tag = request.form.get('aufgaben_tag')
-        aufgaben_monat = request.form.get('aufgaben_monat')
+        aufgaben_datum = request.form.get('aufgaben_datum')
+        #aufgaben_monat = request.form.get('aufgaben_monat')
         priorität = request.form.get('priorität')
-        cursor.execute("UPDATE aufgaben SET name=?, datum_abgabe_tag=?, datum_abgabe_monat=?, priorität=? WHERE aufgaben_id=?;", 
-               (name , aufgaben_tag, aufgaben_monat, priorität, aufgaben_id))        
+        cursor.execute("UPDATE aufgaben SET name=?, datum=?, priorität=? WHERE aufgaben_id=?;", 
+               (name , aufgaben_datum, priorität, aufgaben_id))        
         connection.commit()
         connection.close()
         return render_template('edit_aufgabe.html', aufgabe=aufgabe)
